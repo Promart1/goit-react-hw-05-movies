@@ -22,9 +22,10 @@ const MovieDetails = () => {
         console.error('Error searching movie:', error);
       }
     };
-
+    console.log(data);
     movieDetails();
   }, [movieId]);
+
   return <>{movie && <MovieInfo movie={movie} />}</>;
 };
 
