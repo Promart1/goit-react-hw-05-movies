@@ -1,11 +1,24 @@
+import MoviesList from 'components/MoviesList/MoviesList';
 import SearchMovies from 'components/SearchMovies/SearchMovies';
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import { getMoviesByName } from 'services/fetchApi';
 
 const Movies = () => {
   const [movies, setMovies] = useState([]);
   const [queryName, setQueryName] = useState('');
+  // const movies = getMoviesByName();
+  const [searchParams] = useSearchParams();
+  const movieName = searchParams.get('title') ?? '';
+
+  const visibleMovie = movies.filter(movie =>
+    movie.title.toLowerCase().includes(movieName.toLowerCase())
+  );
+
+  // const updateQueryString = title => {
+  //   const nextParams = title !== '' ? { title } : {};
+  //   setSearchParams(nextParams);
+  // };
 
   useEffect(() => {
     const searchMovies = async () => {
@@ -20,13 +33,19 @@ const Movies = () => {
     searchMovies();
   }, [queryName]);
 
+  useEffect(() => {
+    const initialSearchParams = new URLSearchParams(window.location.search);
+    const initialMovieName = initialSearchParams.get('title') || '';
+    setQueryName(initialMovieName);
+  }, []);
+
   const onSubmit = title => {
-    setMovies([]);
+    // setMovies([]);
     setQueryName(title);
   };
   return (
     <>
-      <SearchMovies onSubmit={onSubmit} />
+      <SearchMovies value={movieName} onSubmit={onSubmit} />
       <ul>
         {movies.map(movie => (
           <li key={movie.id}>
@@ -34,6 +53,7 @@ const Movies = () => {
           </li>
         ))}
       </ul>
+      <MoviesList movies={visibleMovie} />
     </>
   );
 };
