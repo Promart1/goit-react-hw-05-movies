@@ -1,12 +1,9 @@
 import { useState } from 'react';
 import css from '../SearchMovies/SearchMovies.module.css';
 
-const SearchMovies = ({ onSubmit }) => {
+const SearchMovies = ({ onSubmit, onChange, value }) => {
   const [queryName, setQueryName] = useState('');
 
-  const handleInput = event => {
-    setQueryName(event.currentTarget.value.toLowerCase().trim());
-  };
   const reset = () => {
     setQueryName('');
   };
@@ -20,7 +17,8 @@ const SearchMovies = ({ onSubmit }) => {
     <form onSubmit={handleSubmit}>
       <input
         className={css.input}
-        onChange={handleInput}
+        value={value}
+        onChange={e => onChange(e.target.value)}
         type="text"
         autoComplete="off"
         autoFocus

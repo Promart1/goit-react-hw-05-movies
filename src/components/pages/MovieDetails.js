@@ -1,4 +1,4 @@
-import React, { Suspense, useEffect, useState } from 'react';
+import React, { Suspense, useEffect, useRef, useState } from 'react';
 import { getMovieDetails } from 'services/fetchApi';
 import { Link, Outlet, useLocation, useParams } from 'react-router-dom';
 import { AiFillCaretLeft } from 'react-icons/ai';
@@ -10,7 +10,7 @@ const MovieDetails = () => {
   const [movie, setMovie] = useState(null);
   const location = useLocation();
 
-  const backLinkHref = location.state?.from ?? '/';
+  const backLinkRef = useRef(location.state?.from ?? '/');
 
   useEffect(() => {
     const movieDetails = async () => {
@@ -27,7 +27,7 @@ const MovieDetails = () => {
 
   return (
     <>
-      <Link to={backLinkHref}>
+      <Link to={backLinkRef.current}>
         <AiFillCaretLeft />
         go back
       </Link>

@@ -1,4 +1,6 @@
 import css from '../MovieInfo/MoveInfo.module.css';
+import PropTypes from 'prop-types';
+
 const MovieInfo = ({ movie }) => {
   return (
     <div className={css.container}>
@@ -23,6 +25,14 @@ const MovieInfo = ({ movie }) => {
       </div>
     </div>
   );
+};
+
+MovieInfo.propTypes = {
+  poster_path: PropTypes.string,
+  title: PropTypes.string,
+  vote_average: PropTypes.number,
+  overview: PropTypes.string,
+  genres: PropTypes.string,
 };
 
 export default MovieInfo;
