@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Outlet, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { getMovieCast } from 'services/fetchApi';
 import css from './Cast.module.css';
 
@@ -28,22 +28,6 @@ const Cast = () => {
   return (
     <div>
       <ul>
-        {/* {casts &&
-          casts.map(cast => (
-            <li key={cast.id}>
-              {cast.profile_path ? (
-                <img
-                  src={`https://image.tmdb.org/t/p/w500${cast.profile_path}`}
-                  alt={cast.name}
-                />
-              ) : (
-                <img src="https://i.stack.imgur.com/l60Hf.png" alt="Default" />
-              )}
-              <p>{cast.name}</p>
-              <p>Character: {cast.character}</p>
-            </li>
-          ))} */}
-
         {casts.length === 0 ? (
           <li>
             <p className={css.message}>
@@ -67,7 +51,6 @@ const Cast = () => {
           ))
         )}
       </ul>
-      <Outlet />
     </div>
   );
 };

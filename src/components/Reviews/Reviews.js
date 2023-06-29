@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Outlet, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { getMovieReviews } from 'services/fetchApi';
 import css from '../Reviews/Reviews.module.css';
 
@@ -41,7 +41,6 @@ const Reviews = () => {
           ))
         )}
       </ul>
-      <Outlet />
     </div>
   );
 };

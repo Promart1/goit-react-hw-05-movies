@@ -1,7 +1,10 @@
-import MoviesList from 'components/MoviesList/MoviesList';
 import SearchMovies from 'components/SearchMovies/SearchMovies';
 import React, { useEffect, useState } from 'react';
-import { Link, useSearchParams } from 'react-router-dom';
+import {
+  Link,
+  unstable_HistoryRouter,
+  useSearchParams,
+} from 'react-router-dom';
 import { getMoviesByName } from 'services/fetchApi';
 
 const Movies = () => {
@@ -11,9 +14,9 @@ const Movies = () => {
   const [searchParams] = useSearchParams();
   const movieName = searchParams.get('title') ?? '';
 
-  const visibleMovie = movies.filter(movie =>
-    movie.title.toLowerCase().includes(movieName.toLowerCase())
-  );
+  // const visibleMovie = movies.filter(movie =>
+  //   movie.title.toLowerCase().includes(movieName.toLowerCase())
+  // );
 
   // const updateQueryString = title => {
   //   const nextParams = title !== '' ? { title } : {};
@@ -53,7 +56,7 @@ const Movies = () => {
           </li>
         ))}
       </ul>
-      <MoviesList movies={visibleMovie} />
+      {/* <MoviesList movies={movies} /> */}
     </>
   );
 };

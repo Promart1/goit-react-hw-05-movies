@@ -9,7 +9,9 @@ const MovieDetails = () => {
   const { movieId } = useParams();
   const [movie, setMovie] = useState(null);
   const location = useLocation();
-  const backLinkHref = location.state?.from ?? '/movies';
+
+  const backLinkHref = location.state?.from ?? '/';
+
   useEffect(() => {
     const movieDetails = async () => {
       try {
