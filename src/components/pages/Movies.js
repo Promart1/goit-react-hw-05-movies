@@ -1,7 +1,7 @@
 import MoviesList from 'components/MoviesList/MoviesList';
 import SearchMovies from 'components/SearchMovies/SearchMovies';
 import React, { useEffect, useState } from 'react';
-import { Link, useLocation, useSearchParams } from 'react-router-dom';
+import { useLocation, useSearchParams } from 'react-router-dom';
 import { getMoviesByName } from 'services/fetchApi';
 
 const Movies = () => {
