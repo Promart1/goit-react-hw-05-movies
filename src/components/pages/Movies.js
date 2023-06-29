@@ -1,10 +1,6 @@
 import SearchMovies from 'components/SearchMovies/SearchMovies';
 import React, { useEffect, useState } from 'react';
-import {
-  Link,
-  unstable_HistoryRouter,
-  useSearchParams,
-} from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import { getMoviesByName } from 'services/fetchApi';
 
 const Movies = () => {
