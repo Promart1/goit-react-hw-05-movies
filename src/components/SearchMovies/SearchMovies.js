@@ -1,24 +1,29 @@
 import { useState } from 'react';
 import css from '../SearchMovies/SearchMovies.module.css';
 
-const SearchMovies = ({ onSubmit, onChange, value }) => {
-  const [queryName, setQueryName] = useState('');
+const SearchMovies = ({ onSubmit, value }) => {
+  const [query, setQuery] = useState('');
 
-  const reset = () => {
-    setQueryName('');
+  const handleChange = event => {
+    setQuery(event.currentTarget.value.toLowerCase());
   };
+
   const handleSubmit = event => {
     event.preventDefault();
-    onSubmit(queryName);
-    reset();
+
+    if (query.trim() === '') {
+      return <div>Please input name for searching movies</div>;
+    }
+    onSubmit(query);
+    setQuery('');
   };
 
   return (
     <form onSubmit={handleSubmit}>
       <input
         className={css.input}
-        value={value}
-        onChange={e => onChange(e.target.value)}
+        value={query}
+        onChange={handleChange}
         type="text"
         autoComplete="off"
         autoFocus
